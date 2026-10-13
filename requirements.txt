@@ -1,0 +1,43 @@
+CHATBOT REQUIREMENTS (Next.js + Hugging Face)
+
+RUNTIME
+- Node.js >= 18.18 (20 LTS recommended)
+- npm (or pnpm/yarn)
+
+NPM PACKAGES (no others are imported by the code)
+Dependencies:
+- next
+- react
+- react-dom
+Dev dependencies:
+- typescript
+- @types/node
+- @types/react
+- @types/react-dom
+
+Install in a new project:
+  npx create-next-app@latest . --typescript --app --import-alias "@/*"
+Or in an existing one:
+  npm install next react react-dom
+  npm install -D typescript @types/node @types/react @types/react-dom
+
+ENVIRONMENT VARIABLES (.env.local, and Vercel > Settings > Environment Variables)
+- OPENROUTER_API_KEY = OpenRouter key (openrouter.ai/keys)
+- OPENROUTER_MODEL = optional; default nvidia/nemotron-3-super-120b-a12b:free
+
+EXTERNAL ACCOUNTS
+- Hugging Face account + token: huggingface.co/settings/tokens
+- Vercel (optional, for deployment)
+- Gigs come from Supabase (SUPABASE_URL, SUPABASE_ANON_KEY in .env.local); no extra npm packages
+
+FILES TO CREATE
+- app/api/chat/route.ts
+- components/ChatWidget.tsx
+- lib/knowledge.ts
+- lib/gigs.ts
+- .env.local
+- app/layout.tsx: add `import ChatWidget from "@/components/ChatWidget";` and <ChatWidget /> before </body>
+
+PLACEHOLDERS TO CHANGE
+- ChatWidget.tsx: support@yourdomain.com -> real support email
+- lib/gigs.ts: done (reads Supabase gigs table)
